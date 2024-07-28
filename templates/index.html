@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PC MOVIES</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .red {
+            background-color: red;
+            color: white;
+        }
+        .green {
+            background-color: green;
+            color: white;
+        }
+        .yellow {
+            background-color: yellow;
+            color: black;
+        }
+        .plus {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://graph.org/file/c98341e9758f1b06ff808.jpg" alt="Logo" style="width: 50px; height: 50px;">
+    <h1>PC MOVIES</h1>
+    <a href="https://t.me/pcmoviegroup" class="button red">Movie Group</a>
+    <a href="https://t.me/pcott" class="button green">PC OTT</a>
+    <div class="button yellow">PC WEB UPDATES</div>
+    <a href="/admin" class="button plus">+</a>
+
+    <div id="updates">
+        {% for update in updates %}
+            <div>
+                <img src="{{ update.photo }}" alt="Photo" style="width: 50px; height: 50px;">
+                <p>{{ update.text }}</p>
+                <a href="{{ update.link }}">{{ update.link }}</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
