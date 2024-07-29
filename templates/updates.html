@@ -10,26 +10,37 @@
             text-align: center;
         }
         .update {
-            margin: 20px;
-            padding: 20px;
             border: 1px solid white;
-            border-radius: 10px;
+            margin: 10px;
+            padding: 10px;
         }
         .update img {
-            width: 100%;
-            max-width: 600px; /* Adjust the max width as needed */
-            height: auto;
+            max-width: 100%;
+            max-height: 500px; /* Increase the size of the image */
+        }
+        .delete-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <h1>PC WEB UPDATES</h1>
     {% for update in updates %}
-    <div class="update">
-        <img src="{{ update.photo }}" alt="Update Image">
-        <p>{{ update.text }}</p>
-        <a href="{{ update.link }}" target="_blank">{{ update.link }}</a>
-    </div>
+        <div class="update">
+            <img src="{{ update.photo }}" alt="Update Image">
+            <p>{{ update.text }}</p>
+            <a href="{{ update.link }}" target="_blank">{{ update.link }}</a>
+            <form method="post" action="{{ url_for('updates') }}">
+                <input type="hidden" name="update_id" value="{{ update._id }}">
+                <input type="password" name="password" placeholder="Enter password to delete">
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+        </div>
     {% endfor %}
 </body>
 </html>
