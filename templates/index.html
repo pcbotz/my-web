@@ -25,7 +25,6 @@
         }
         .red { background-color: red; }
         .green { background-color: green; }
-        .yellow { background-color: yellow; }
         .add-button {
             position: fixed;
             top: 10px;
@@ -46,7 +45,7 @@
     <h1>PC MOVIES</h1>
     <a href="https://t.me/pcmoviegroup" class="button red">Movie Group</a>
     <a href="https://t.me/pcott" class="button green">PC OTT</a>
-    <a href="{{ url_for('updates') }}" class="button yellow">PC WEB UPDATES</a>
+    <a href="{{ url_for('updates') }}" class="button red">PC WEB UPDATES</a>
     <button class="add-button" onclick="location.href='{{ url_for('admin') }}'">+</button>
 </body>
 </html>
