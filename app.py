@@ -17,7 +17,7 @@ def home():
 def admin():
     if request.method == 'POST':
         password = request.form['password']
-        if password == 'pcsdfgjij345jiorigjjv':
+        if password == 'sdfe53rf564gdfgerh':
             return redirect(url_for('add_update'))
         else:
             flash('Incorrect password', 'error')

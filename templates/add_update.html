@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Update</title>
     <style>
         body {
             background-color: black;
             color: white;
+            text-align: center;
+        }
+        form {
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
         }
     </style>
 </head>
 <body>
     <h1>Add Update</h1>
-    <form method="post">
-        <label for="photo">Photo URL:</label>
-        <input type="text" id="photo" name="photo">
-        <label for="text">Text:</label>
-        <input type="text" id="text" name="text">
-        <label for="link">Link:</label>
-        <input type="text" id="link" name="link">
-        <button type="submit">Add Update</button>
+    <form method="POST">
+        <input type="text" name="photo" placeholder="Photo URL"><br>
+        <input type="text" name="text" placeholder="Text"><br>
+        <input type="text" name="link" placeholder="Link URL"><br>
+        <input type="submit" value="Add Update">
     </form>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="flash {{ category }}">{{ message }}</div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
 </body>
 </html>

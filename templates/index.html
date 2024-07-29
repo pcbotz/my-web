@@ -1,55 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PC MOVIES</title>
     <style>
         body {
             background-color: black;
             color: white;
-        }
-        .button {
-            padding: 10px 20px;
-            margin: 10px;
-            display: block;
             text-align: center;
+        }
+        .btn {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            margin: 10px auto;
+            text-align: center;
+            color: white;
             text-decoration: none;
-            font-size: 16px;
+            border-radius: 5px;
         }
-        .red {
-            background-color: red;
-            color: white;
-        }
-        .green {
-            background-color: green;
-            color: white;
-        }
-        .yellow {
-            background-color: yellow;
-            color: black;
-        }
-        .plus {
+        .btn-red { background-color: red; }
+        .btn-green { background-color: green; }
+        .btn-yellow { background-color: yellow; color: black; }
+        .plus-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            text-decoration: none;
+        }
+        .top-image {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <img src="https://graph.org/file/c98341e9758f1b06ff808.jpg" alt="Logo" style="width: 50px; height: 50px;">
+    <img class="top-image" src="https://graph.org/file/c98341e9758f1b06ff808.jpg" alt="Top Image">
     <h1>PC MOVIES</h1>
-    <a href="https://t.me/pcmoviegroup" class="button red">Movie Group</a>
-    <a href="https://t.me/pcott" class="button green">PC OTT</a>
-    <div class="button yellow">PC WEB UPDATES</div>
-    <a href="/admin" class="button plus">+</a>
-
-    <div id="updates">
-        {% for update in updates %}
-            <div>
-                <img src="{{ update.photo }}" alt="Photo" style="width: 50px; height: 50px;">
-                <p>{{ update.text }}</p>
-                <a href="{{ update.link }}">{{ update.link }}</a>
-            </div>
-        {% endfor %}
+    <a href="/admin" class="plus-btn">+</a>
+    <a href="https://t.me/pcmoviegroup" class="btn btn-red">Movie Group</a>
+    <a href="https://t.me/pcott" class="btn btn-green">PC OTT</a>
+    <div class="btn btn-yellow">
+        PC WEB UPDATES
+        <ul>
+            {% for update in updates %}
+            <li>
+                <img src="{{ update.photo }}" alt="Photo" width="100"><br>
+                {{ update.text }}<br>
+                <a href="{{ update.link }}" target="_blank">{{ update.link }}</a>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 </html>
