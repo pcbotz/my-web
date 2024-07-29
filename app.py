@@ -10,8 +10,12 @@ db = client.web
 
 @app.route('/')
 def home():
+    return render_template('index.html')
+
+@app.route('/updates')
+def updates():
     updates = db.updates.find()
-    return render_template('index.html', updates=updates)
+    return render_template('updates.html', updates=updates)
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
