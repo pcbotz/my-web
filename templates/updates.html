@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PC WEB UPDATES</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+        .update {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid white;
+            border-radius: 10px;
+        }
+        .update img {
+            width: 100%;
+            max-width: 600px; /* Adjust the max width as needed */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>PC WEB UPDATES</h1>
+    {% for update in updates %}
+    <div class="update">
+        <img src="{{ update.photo }}" alt="Update Image">
+        <p>{{ update.text }}</p>
+        <a href="{{ update.link }}" target="_blank">{{ update.link }}</a>
+    </div>
+    {% endfor %}
+</body>
+</html>
