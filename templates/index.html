@@ -4,18 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PC MOVIES</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        img.logo {
+            width: 150px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            margin: 20px auto;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        .btn-movie-group {
+            background-color: red;
+        }
+
+        .btn-pc-ott {
+            background-color: green;
+        }
+
+        .btn-updates {
+            background-color: red; /* Start with red */
+            animation: colorChange 2s infinite;
+        }
+
+        @keyframes colorChange {
+            0% { background-color: red; }
+            50% { background-color: blue; }
+            100% { background-color: red; }
+        }
+
+        .plus-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            color: black;
+            font-size: 30px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Firefly effect */
+        .firefly {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: drift 20s infinite;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate3d(0, 0, 0);
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            95% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate3d(100vw, 100vh, 0);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="header">
-        <img src="https://graph.org/file/c98341e9758f1b06ff808.jpg" alt="Logo" class="logo">
-        <h1>PC MOVIES</h1>
-        <a href="{{ url_for('admin') }}" class="admin-btn">+</a>
-    </div>
-    <div class="button-group">
-        <a href="https://t.me/pcmoviegroup" class="btn red-btn">Movie Group</a>
-        <a href="https://t.me/pcott" class="btn green-btn">PC OTT</a>
-        <a href="{{ url_for('updates') }}" class="btn updates-btn">PC WEB UPDATES</a>
-    </div>
+
+    <div class="plus-btn" onclick="location.href='{{ url_for('admin') }}'">+</div>
+
+    <h1>PC MOVIES</h1>
+
+    <img src="https://graph.org/file/c98341e9758f1b06ff808.jpg" alt="PC Movies Logo" class="logo">
+
+    <a href="https://t.me/pcmoviegroup" class="btn btn-movie-group">Movie Group</a>
+    <a href="https://t.me/pcott" class="btn btn-pc-ott">PC OTT</a>
+    <a href="{{ url_for('updates') }}" class="btn btn-updates">PC WEB UPDATES</a>
+
+    <!-- Firefly effect -->
+    <div class="firefly" style="top: 10%; left: 10%;"></div>
+    <div class="firefly" style="top: 20%; left: 20%;"></div>
+    <div class="firefly" style="top: 30%; left: 30%;"></div>
+    <div class="firefly" style="top: 40%; left: 40%;"></div>
+    <div class="firefly" style="top: 50%; left: 50%;"></div>
+    <div class="firefly" style="top: 60%; left: 60%;"></div>
+    <div class="firefly" style="top: 70%; left: 70%;"></div>
+    <div class="firefly" style="top: 80%; left: 80%;"></div>
+    <div class="firefly" style="top: 90%; left: 90%;"></div>
+
+    <script>
+        function createFireflies() {
+            for (let i = 0; i < 50; i++) {
+                const firefly = document.createElement('div');
+                firefly.className = 'firefly';
+                firefly.style.top = `${Math.random() * 100}vh`;
+                firefly.style.left = `${Math.random() * 100}vw`;
+                firefly.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                document.body.appendChild(firefly);
+            }
+        }
+        createFireflies();
+    </script>
 </body>
 </html>
