@@ -1,94 +1,37 @@
-body {
-    background-color: black;
-    color: white;
-    font-family: Arial, sans-serif;
-}
-
-.header {
-    text-align: center;
-    position: relative;
-}
-
-.logo {
-    width: 100px;
+/* Ensure the image in updates is smaller */
+.update-item img {
+    max-width: 300px;
     height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Button styles */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
     margin-top: 10px;
 }
 
-h1 {
-    font-size: 2.5rem;
-}
-
-.admin-btn {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    color: white;
-    text-decoration: none;
-    font-size: 2rem;
-}
-
-.button-group {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.btn {
-    display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    text-align: center;
-    width: 200px;
-    text-decoration: none;
-    color: white;
-}
-
-.red-btn {
+.button.red {
     background-color: red;
 }
 
-.green-btn {
-    background-color: green;
-}
-
-.updates-btn {
+/* Delete button styling */
+.delete-button {
     background-color: red;
-    animation: colorChange 2s infinite alternate;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 10px;
 }
 
-@keyframes colorChange {
-    from {
-        background-color: red;
-    }
-    to {
-        background-color: blue;
-    }
-}
-
-.updates-container {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #333;
-    border-radius: 8px;
-}
-
-.update-item {
-    background-color: #444;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-}
-
-.update-image {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-}
-
-#search {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
+.delete-button:hover {
+    background-color: darkred;
 }
