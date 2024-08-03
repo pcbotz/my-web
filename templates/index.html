@@ -7,20 +7,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="firefly">
-        <div></div><div></div><div></div><div></div><div></div>
-        <!-- Add more fireflies if needed -->
-    </div>
-
-    <header>
-        <img src="https://graph.org/file/c98341e9758f1b06ff808.jpg" class="logo" alt="PC MOVIES Logo">
+    <div class="header">
+        <img src="https://graph.org/file/c98341e9758f1b06ff808.jpg" alt="Logo" class="logo">
         <h1>PC MOVIES</h1>
-    </header>
-    
-    <div class="container">
-        <button style="background-color: red;" onclick="location.href='https://t.me/pcmoviegroup'">Movie Group</button>
-        <button style="background-color: green;" onclick="location.href='https://t.me/pcott'">PC OTT</button>
-        <button class="red-blue-effect" onclick="location.href='{{ url_for('updates') }}'">PC WEB UPDATES</button>
+        <a href="{{ url_for('admin') }}" class="admin-btn">+</a>
+    </div>
+    <div class="button-group">
+        <a href="https://t.me/pcmoviegroup" class="btn red-btn">Movie Group</a>
+        <a href="https://t.me/pcott" class="btn green-btn">PC OTT</a>
+        <a href="{{ url_for('updates') }}" class="btn updates-btn">PC WEB UPDATES</a>
     </div>
 </body>
 </html>
