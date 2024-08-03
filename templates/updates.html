@@ -8,8 +8,8 @@
 </head>
 <body>
     <h1>PC WEB UPDATES</h1>
-    <form action="{{ url_for('updates') }}" method="get">
-        <input type="text" name="search" placeholder="Search updates">
+    <form action="{{ url_for('home') }}" method="get">
+        <input type="text" name="search" placeholder="Search updates" value="{{ request.args.get('search', '') }}">
         <button type="submit">Search</button>
     </form>
 
