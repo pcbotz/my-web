@@ -1,0 +1,84 @@
+body {
+    background: black;
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    font-size: 24px;
+}
+
+img.logo {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+}
+
+.container {
+    padding: 40px;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button.red-blue-effect {
+    background: linear-gradient(90deg, red, blue);
+    background-size: 200% 200%;
+    animation: colorChange 3s infinite;
+    border: none;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+button.red-blue-effect:hover {
+    transform: scale(1.1);
+}
+
+@keyframes colorChange {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Firefly Effect */
+.firefly {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.firefly div {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    animation: fly 20s infinite ease-in-out;
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(100vw, 100vh);
+    }
+}
