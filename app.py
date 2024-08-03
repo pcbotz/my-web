@@ -13,19 +13,6 @@ db = client.web
 def home():
     return render_template('index.html')
 
-@app.route('/updates', methods=['GET', 'POST'])
-def updates():
-    if request.method == 'POST':
-        password = request.form['password']
-        if password == 'sdfe53rf564gdfgerh':
-            update_id = request.form['update_id']
-            db.updates.delete_one({'_id': ObjectId(update_id)})
-            flash('Update deleted successfully', 'success')
-        else:
-            flash('Incorrect password', 'error')
-    updates = db.updates.find().sort('_id', -1)  # Sort updates in reverse order
-    return render_template('updates.html', updates=updates)
-
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     if request.method == 'POST':
@@ -44,8 +31,23 @@ def add_update():
         link = request.form['link']
         db.updates.insert_one({'photo': photo, 'text': text, 'link': link})
         flash('Update added successfully', 'success')
-        return redirect(url_for('updates'))
+        return redirect(url_for('home'))
     return render_template('add_update.html')
+
+@app.route('/updates')
+def updates():
+    updates = db.updates.find().sort("_id", -1)
+    return render_template('updates.html', updates=updates)
+
+@app.route('/delete_update/<update_id>', methods=['POST'])
+def delete_update(update_id):
+    password = request.form['password']
+    if password == 'sdfe53rf564gdfgerh':
+        db.updates.delete_one({'_id': ObjectId(update_id)})
+        flash('Update deleted successfully', 'success')
+    else:
+        flash('Incorrect password', 'error')
+    return redirect(url_for('updates'))
 
 if __name__ == '__main__':
     app.run(debug=True)
