@@ -2,50 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PC MOVIES</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            text-align: center;
-        }
-        .logo {
-            width: 100px; /* Adjust the width to make the image logo-sized */
-            height: auto;
-        }
-        .button {
-            display: block;
-            width: 200px;
-            margin: 10px auto;
-            padding: 10px;
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            border-radius: 5px;
-        }
-        .red { background-color: red; }
-        .green { background-color: green; }
-        .add-button {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            width: 50px;
-            height: 50px;
-            background-color: blue;
-            color: white;
-            font-size: 24px;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <img src="https://graph.org/file/c98341e9758f1b06ff808.jpg" alt="Logo" class="logo">
-    <h1>PC MOVIES</h1>
-    <a href="https://t.me/pcmoviegroup" class="button red">Movie Group</a>
-    <a href="https://t.me/pcott" class="button green">PC OTT</a>
-    <a href="{{ url_for('updates') }}" class="button red">PC WEB UPDATES</a>
-    <button class="add-button" onclick="location.href='{{ url_for('admin') }}'">+</button>
+    <div class="firefly">
+        <div></div><div></div><div></div><div></div><div></div>
+        <!-- Add more fireflies if needed -->
+    </div>
+
+    <header>
+        <img src="https://graph.org/file/c98341e9758f1b06ff808.jpg" class="logo" alt="PC MOVIES Logo">
+        <h1>PC MOVIES</h1>
+    </header>
+    
+    <div class="container">
+        <button style="background-color: red;" onclick="location.href='https://t.me/pcmoviegroup'">Movie Group</button>
+        <button style="background-color: green;" onclick="location.href='https://t.me/pcott'">PC OTT</button>
+        <button class="red-blue-effect" onclick="location.href='{{ url_for('updates') }}'">PC WEB UPDATES</button>
+    </div>
 </body>
 </html>
