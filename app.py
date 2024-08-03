@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, url_for, render_template, flash
 from pymongo import MongoClient
-from bson.objectid import ObjectId
+from bson.objectid import ObjectId  # Import ObjectId to work with MongoDB IDs
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -11,13 +11,14 @@ db = client.web
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    updates = db.updates.find()
+    return render_template('index.html', updates=updates)
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     if request.method == 'POST':
         password = request.form['password']
-        if password == 'sdfe53rf564gdfgerh':
+        if password == 'pcsdfgjij345jiorigjjv':
             return redirect(url_for('add_update'))
         else:
             flash('Incorrect password', 'error')
@@ -34,20 +35,12 @@ def add_update():
         return redirect(url_for('home'))
     return render_template('add_update.html')
 
-@app.route('/updates')
-def updates():
-    updates = db.updates.find().sort("_id", -1)
-    return render_template('updates.html', updates=updates)
-
 @app.route('/delete_update/<update_id>', methods=['POST'])
 def delete_update(update_id):
-    password = request.form['password']
-    if password == 'sdfe53rf564gdfgerh':
+    if request.method == 'POST':
         db.updates.delete_one({'_id': ObjectId(update_id)})
         flash('Update deleted successfully', 'success')
-    else:
-        flash('Incorrect password', 'error')
-    return redirect(url_for('updates'))
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
