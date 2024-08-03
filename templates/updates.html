@@ -7,23 +7,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="updates-container">
-        <h1>Admin Updates</h1>
-        <input type="text" id="search" placeholder="Search updates...">
-        <div id="updates-list">
-            {% for update in updates %}
-            <div class="update-item">
-                <img src="{{ update['photo'] }}" alt="Update Image" class="update-image">
-                <p>{{ update['text'] }}</p>
-                <a href="{{ update['link'] }}" target="_blank">Link</a>
-                <form action="{{ url_for('delete_update', update_id=update['_id']) }}" method="post">
-                    <input type="password" name="password" placeholder="Enter password to delete">
-                    <button type="submit">Delete</button>
-                </form>
-            </div>
-            {% endfor %}
+    <h1>PC WEB UPDATES</h1>
+
+    {% for update in updates %}
+        <div class="update-item">
+            <img src="{{ update['photo'] }}" alt="Update Image">
+            <p>{{ update['text'] }}</p>
+            <form action="{{ url_for('delete_update', update_id=update['_id']) }}" method="post">
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+            <a href="{{ update['link'] }}" class="button red">Click Here</a>
         </div>
-    </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    {% endfor %}
 </body>
 </html>
