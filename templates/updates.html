@@ -2,45 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PC WEB UPDATES</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            text-align: center;
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function searchUpdates() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const updateItems = document.getElementsByClassName('update-item');
+            for (let i = 0; i < updateItems.length; i++) {
+                const text = updateItems[i].innerText.toLowerCase();
+                updateItems[i].style.display = text.includes(input) ? '' : 'none';
+            }
         }
-        .update {
-            border: 1px solid white;
-            margin: 10px;
-            padding: 10px;
-        }
-        .update img {
-            max-width: 80%; /* Adjust the max-width to increase the size */
-            max-height: 800px; /* Adjust the max-height to increase the size */
-        }
-        .delete-button {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <h1>PC WEB UPDATES</h1>
-    {% for update in updates %}
-        <div class="update">
-            <img src="{{ update.photo }}" alt="Update Image">
-            <p>{{ update.text }}</p>
-            <a href="{{ update.link }}" target="_blank">{{ update.link }}</a>
-            <form method="post" action="{{ url_for('updates') }}">
-                <input type="hidden" name="update_id" value="{{ update._id }}">
+    <header>
+        <h1>PC WEB UPDATES</h1>
+    </header>
+
+    <input type="text" id="searchInput" onkeyup="searchUpdates()" placeholder="Search updates...">
+
+    <div class="updates-container">
+        {% for update in updates %}
+        <div class="update-item">
+            <img src="{{ update['photo'] }}" style="max-width: 100%; height: auto;">
+            <p>{{ update['text'] }}</p>
+            <a href="{{ update['link'] }}">Go to Link</a>
+            <form action="{{ url_for('delete_update', update_id=update['_id']) }}" method="post">
                 <input type="password" name="password" placeholder="Enter password to delete">
-                <button type="submit" class="delete-button">Delete</button>
+                <button type="submit">Delete</button>
             </form>
         </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </body>
 </html>
