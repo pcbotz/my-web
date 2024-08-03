@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, url_for, render_template, flash
 from pymongo import MongoClient
 from werkzeug.security import check_password_hash, generate_password_hash
+from bson import ObjectId
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -14,7 +15,11 @@ admin_password_hash = generate_password_hash('sdfe53rf564gdfgerh')
 
 @app.route('/')
 def home():
-    updates = db.updates.find()
+    search_query = request.args.get('search', '')
+    if search_query:
+        updates = db.updates.find({'text': {'$regex': search_query, '$options': 'i'}}).sort('date', -1)  # Adjust sorting field as necessary
+    else:
+        updates = db.updates.find().sort('date', -1)  # Ensure 'date' or other sorting field is correct
     return render_template('index.html', updates=updates)
 
 @app.route('/admin', methods=['GET', 'POST'])
@@ -33,14 +38,14 @@ def add_update():
         photo = request.form['photo']
         text = request.form['text']
         link = request.form['link']
-        db.updates.insert_one({'photo': photo, 'text': text, 'link': link})
+        db.updates.insert_one({'photo': photo, 'text': text, 'link': link, 'date': datetime.datetime.utcnow()})
         flash('Update added successfully', 'success')
         return redirect(url_for('home'))
     return render_template('add_update.html')
 
 @app.route('/updates')
 def updates():
-    updates = db.updates.find()
+    updates = db.updates.find().sort('date', -1)  # Ensure 'date' or other sorting field is correct
     return render_template('updates.html', updates=updates)
 
 @app.route('/delete_update/<update_id>', methods=['POST'])
