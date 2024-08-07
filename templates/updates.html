@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>PC WEB UPDATES</h1>
-    <form action="{{ url_for('home') }}" method="get">
+    <form action="{{ url_for('updates') }}" method="get">
         <input type="text" name="search" placeholder="Search updates" value="{{ request.args.get('search', '') }}">
         <button type="submit">Search</button>
     </form>
@@ -18,11 +18,13 @@
         <div class="update-content">
             <img src="{{ update['photo'] }}" alt="Update Photo" class="update-photo">
             <p>{{ update['text'] }}</p>
-            <a href="{{ update['link'] }}" class="btn click-here-btn">Click Here</a>
-            <form action="{{ url_for('delete_update', update_id=update['_id']) }}" method="post" class="delete-form">
-                <input type="password" name="password" placeholder="Enter password to delete" required>
-                <button type="submit" class="btn delete-btn">Delete</button>
-            </form>
+            <div class="buttons">
+                <a href="{{ update['link'] }}" class="btn click-here-btn">Click Here</a>
+                <form action="{{ url_for('delete_update', update_id=update['_id']) }}" method="post" class="delete-form">
+                    <input type="password" name="password" placeholder="Enter password to delete" required>
+                    <button type="submit" class="btn delete-btn">Delete</button>
+                </form>
+            </div>
         </div>
     </div>
     {% endfor %}
